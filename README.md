@@ -6,9 +6,9 @@ to change any variables (DB Connection Data), you can do that manually in the co
 
 After starting the container, the service can accessed by sending a request to http://localhost:40080/. Port can differ, if it is changed in the compose.yaml file.
 
-### Currently implemented features:
-#### GetRouteData
-Parameters:<br>
+## Currently implemented features:
+### GetRouteData
+#### Parameters:<br>
 	start: start location as a string<br>
 	end: target location as a string
 
