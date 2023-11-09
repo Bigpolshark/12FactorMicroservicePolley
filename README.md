@@ -8,7 +8,7 @@ After starting the container, the service can accessed by sending a request to h
 
 ### Currently implemented features:
 #### GetRouteData
-Parameters:
+Parameters:<br>
 	start: start location as a string<br>
 	end: target location as a string
 
