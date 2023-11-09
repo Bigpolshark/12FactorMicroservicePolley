@@ -9,7 +9,7 @@ After starting the container, the service can accessed by sending a request to h
 ### Currently implemented features:
 #### GetRouteData
 Parameters:
-	start: start location as a string
+	start: start location as a string<br>
 	end: target location as a string
 
 Example request: http://localhost:40080/GetRouteData?start=Wien&end=Eisenstadt
