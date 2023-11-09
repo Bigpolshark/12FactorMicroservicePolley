@@ -4,12 +4,12 @@ using TwelveFactorMicroservicePolley.Data;
 using TwelveFactorMicroservicePolley.BusinessLogic;
 
 //DB Connection
-string dbName = "MicoserviceDB";
+string dbName = "TwelveFactorMicroservicePolleyNetworkDB";
 string dbUser = "sa";
 string dbPW = "MsSqlServer1#";
-string dbPort = "1433";
-string connectionString = "Data Source = " + dbName + "," + dbPort + "; User ID = " + dbUser + "; Password = " + dbPW + ";";
-//string connectionString = "Data Source = " + dbName + "; User ID = " + dbUser + "; Password = " + dbPW + ";";
+//string dbPort = "1433";
+//string connectionString = "Data Source = " + dbName + "," + dbPort + "; User ID = " + dbUser + "; Password = " + dbPW + ";";
+string connectionString = "Data Source = " + dbName + "; User ID = " + dbUser + "; Password = " + dbPW + ";";
 
 //DB Setup
 var builder = WebApplication.CreateBuilder(args);

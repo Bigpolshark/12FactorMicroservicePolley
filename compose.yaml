@@ -1,10 +1,22 @@
 services:
   TwelveFactorMicroservicePolley:
-    build: .
+    #image: image12factormicroservicepolley:dev
+    image: bigpolshark/image12factormicroservicepolley:latest
     ports:
-      - "8000:5000"
-  TwelveFactorMicroservicePolleyNetworkDB:
-    image: "redis:alpine"
+      - "40080:80"
+      - "40443:443"
+    networks:
+      - TwelveFactorMicroservicePolleyNetwork
 
-networks:
- TwelveFactorMicroservicePolleyNetwork
+  TwelveFactorMicroservicePolleyNetworkDB:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    ports:
+      - "1433:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=MsSqlServer1#
+    networks:
+      - TwelveFactorMicroservicePolleyNetwork
+
+networks: 
+   TwelveFactorMicroservicePolleyNetwork:

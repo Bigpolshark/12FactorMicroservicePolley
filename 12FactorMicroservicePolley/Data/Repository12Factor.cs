@@ -31,10 +31,16 @@ namespace TwelveFactorMicroservicePolley.Data
 
                 return result;
             }
+            catch (System.InvalidOperationException ex)
+            {
+
+                return null;
+
+            }
             catch (System.Exception ex)
             {
 
-                throw new Exception("Error");
+                throw new Exception("Error", ex);
 
             }
         }

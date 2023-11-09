@@ -20,21 +20,37 @@ namespace TwelveFactorMicroservicePolley.BusinessLogic
 
         public RouteDataObject GetRouteDataBL(string StartLocation, string EndLocation)
         {
-            var result = repo.GetRouteDataDAL(StartLocation, EndLocation);
-
-            if(result == null)
+            try
             {
-                result = CallRouteAPI(StartLocation, EndLocation);
-                SaveRouteBL(result);
-            }
+                var result = repo.GetRouteDataDAL(StartLocation, EndLocation);
+                //RouteDataObject result = null;
 
-            return result;
+                if(result == null)
+                {
+                    result = CallRouteAPI(StartLocation, EndLocation);
+                    SaveRouteBL(result);
+                }
+
+                return result;
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Error", ex);
+            }
             
         }
 
         public void SaveRouteBL(RouteDataObject routeData)
         {
-            repo.SaveRouteDAL(routeData);
+            try
+            {
+                repo.SaveRouteDAL(routeData);
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error", ex);
+            }
         }
     }
 }

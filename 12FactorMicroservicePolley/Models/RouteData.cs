@@ -1,7 +1,12 @@
-﻿namespace TwelveFactorMicroservicePolley.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace TwelveFactorMicroservicePolley.Models
 {
     public class RouteDataObject
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string? Id { get; set; }
         public string StartLocation { get; set; }
 

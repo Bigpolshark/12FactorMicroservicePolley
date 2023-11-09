@@ -22,6 +22,7 @@ namespace TwelveFactorMicroservicePolley.Controllers
         }
 
         [HttpGet("GetRouteData")]
+        [Consumes("application/json")]
         public virtual IActionResult GetRouteData(string start, string end)
         {
 
@@ -34,7 +35,7 @@ namespace TwelveFactorMicroservicePolley.Controllers
             catch (System.Exception ex)
             {
 
-                return StatusCode(400, ex);
+                return StatusCode(400, ex.InnerException + ex.StackTrace);
             }
 
         }
