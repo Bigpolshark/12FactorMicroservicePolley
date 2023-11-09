@@ -15,10 +15,12 @@ namespace TwelveFactorMicroservicePolley.Controllers
     public class TwelveFactorMicroserviceController : ControllerBase
     {
         private readonly IBusinessLogic12Factor _logic;
+        private readonly ILogger<TwelveFactorMicroserviceController> _logger;
 
-        public TwelveFactorMicroserviceController(IBusinessLogic12Factor logic)
+        public TwelveFactorMicroserviceController(IBusinessLogic12Factor logic, ILogger<TwelveFactorMicroserviceController> logger)
         {
             _logic = logic;
+            _logger = logger;
         }
 
         [HttpGet("GetRouteData")]
@@ -30,11 +32,12 @@ namespace TwelveFactorMicroservicePolley.Controllers
             {
                 var returnValue = _logic.GetRouteDataBL(start,end);
 
+                _logger.LogInformation($"{nameof(TwelveFactorMicroserviceController)}: Operation successfull, see return value.");
                 return StatusCode(200, returnValue);
             }
             catch (System.Exception ex)
             {
-
+                _logger.LogError($"{nameof(TwelveFactorMicroserviceController)}: " + ex.Message);
                 return StatusCode(400, ex.InnerException + ex.StackTrace);
             }
 

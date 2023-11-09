@@ -2,6 +2,8 @@
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
+using TwelveFactorMicroservicePolley.Controllers;
+using TwelveFactorMicroservicePolley.BusinessLogic;
 
 namespace TwelveFactorMicroservicePolley.Data
 {
@@ -9,39 +11,31 @@ namespace TwelveFactorMicroservicePolley.Data
     {
 
         private readonly DbContext12Factor context;
+        private readonly ILogger<Repository12Factor> _logger;
 
-        public Repository12Factor(DbContext12Factor context)
+        public Repository12Factor(DbContext12Factor context, ILogger<Repository12Factor> logger)
         {
             this.context = context;
-            //_logger = logger;
-            //_logger.LogDebug("");
+            _logger = logger;
         }
 
         public RouteDataObject GetRouteDataDAL(string StartLocation, string EndLocation)
         {
-            //return new RouteDataObject("test1", "test1", "test1");
-
             try
             {
                 context.Database.EnsureCreated();
 
                 var result = context.RouteDataDB
-                    .Single(x => x.StartLocation == StartLocation && x.EndLocation == EndLocation);
-
+                    .Where(item => item.StartLocation == StartLocation)
+                    .Where(item => item.EndLocation == EndLocation)
+                    .FirstOrDefault();
 
                 return result;
             }
-            catch (System.InvalidOperationException ex)
-            {
-
-                return null;
-
-            }
             catch (System.Exception ex)
             {
-
+                _logger.LogError($"{nameof(GetRouteDataDAL)}: " + ex.Message);
                 throw new Exception("Error", ex);
-
             }
         }
 
@@ -55,7 +49,8 @@ namespace TwelveFactorMicroservicePolley.Data
             }
             catch (System.Exception ex)
             {
-
+                _logger.LogError($"{nameof(SaveRouteDAL)}: " + ex.Message);
+                throw new Exception("Error", ex);
             }
         }
     }

@@ -1,12 +1,16 @@
 services:
   TwelveFactorMicroservicePolley:
-    #image: image12factormicroservicepolley:dev
     image: bigpolshark/image12factormicroservicepolley:latest
     ports:
       - "40080:80"
       - "40443:443"
     networks:
       - TwelveFactorMicroservicePolleyNetwork
+    environment:
+      - MapQuestAPIKey=dNf3SB306SveGv0goTvIhxU4JSJatW4g
+      - dbName=TwelveFactorMicroservicePolleyNetworkDB
+      - dbUser=sa
+      - dbPW=MsSqlServer1#
 
   TwelveFactorMicroservicePolleyNetworkDB:
     image: mcr.microsoft.com/mssql/server:2022-latest

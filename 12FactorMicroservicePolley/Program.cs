@@ -4,11 +4,9 @@ using TwelveFactorMicroservicePolley.Data;
 using TwelveFactorMicroservicePolley.BusinessLogic;
 
 //DB Connection
-string dbName = "TwelveFactorMicroservicePolleyNetworkDB";
-string dbUser = "sa";
-string dbPW = "MsSqlServer1#";
-//string dbPort = "1433";
-//string connectionString = "Data Source = " + dbName + "," + dbPort + "; User ID = " + dbUser + "; Password = " + dbPW + ";";
+string dbName = Environment.GetEnvironmentVariable("dbName");
+string dbUser = Environment.GetEnvironmentVariable("dbUser");
+string dbPW = Environment.GetEnvironmentVariable("dbPW");
 string connectionString = "Data Source = " + dbName + "; User ID = " + dbUser + "; Password = " + dbPW + ";";
 
 //DB Setup
