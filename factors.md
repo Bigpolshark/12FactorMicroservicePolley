@@ -28,13 +28,13 @@ Logs are outputted to the standard output
 
 
 ## Potential factors (amount: 1):
-####X. Dev/prod parity - Keep development, staging, and production as similar as possible
+#### X. Dev/prod parity - Keep development, staging, and production as similar as possible
 Because the process is simple, and there is no real split of Dev/Prod environment for this service, this Factor should be fullfilled, as the same 
 backing services are used throughout every step.
 
 
 ## Unused/Unsure factors (amount: 3):
-####VIII. Concurrency - Scale out via the process model
+#### VIII. Concurrency - Scale out via the process model
 Because the microservice is simple, using workers for long running processes was not considered
 
 #### IX. Disposability - Maximize robustness with fast startup and graceful shutdown
