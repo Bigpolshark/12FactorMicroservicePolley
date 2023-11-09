@@ -1,0 +1,10 @@
+services:
+  TwelveFactorMicroservicePolley:
+    build: .
+    ports:
+      - "8000:5000"
+  TwelveFactorMicroservicePolleyNetworkDB:
+    image: "redis:alpine"
+
+networks:
+ TwelveFactorMicroservicePolleyNetwork

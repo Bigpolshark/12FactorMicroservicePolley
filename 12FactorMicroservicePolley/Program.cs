@@ -1,4 +1,24 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using TwelveFactorMicroservicePolley.Data;
+using TwelveFactorMicroservicePolley.BusinessLogic;
+
+//DB Connection
+string dbName = "MicoserviceDB";
+string dbUser = "sa";
+string dbPW = "MsSqlServer1#";
+string dbPort = "1433";
+string connectionString = "Data Source = " + dbName + "," + dbPort + "; User ID = " + dbUser + "; Password = " + dbPW + ";";
+//string connectionString = "Data Source = " + dbName + "; User ID = " + dbUser + "; Password = " + dbPW + ";";
+
+//DB Setup
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<DbContext12Factor>(options =>
+    options.UseSqlServer(connectionString));
+
+//Dependency Injection
+builder.Services.AddTransient<IRepository, Repository12Factor>();
+builder.Services.AddTransient<IBusinessLogic12Factor, BusinessLogic12Factor>();
 
 // Add services to the container.
 
